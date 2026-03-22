@@ -10,7 +10,13 @@
     "appId": "com.accounting.app",
     "win": {
       "target": "nsis"
-    }
+    },
+    "files": [
+      "backend/**/*",
+      "frontend/build/**/*",
+      "main.js",
+      "package.json"
+    ]
   },
   "devDependencies": {
     "electron": "^41.0.3",

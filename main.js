@@ -9,12 +9,12 @@ function createWindow() {
     height: 800,
   });
 
-  const startUrl = `file://${path.join(__dirname, 'frontend/build/index.html')}`;
-  win.loadURL(startUrl);
+  // ✅ Correct way to load local file
+  win.loadFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
 }
 
 app.whenReady().then(() => {
-  // 🔥 Start backend INSIDE Electron
+  // Start backend inside Electron
   const startServer = require('./backend/server');
   startServer();
 
