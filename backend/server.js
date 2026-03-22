@@ -6,14 +6,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Accounting API is running 🚀');
-});
-
 app.use('/transactions', require('./routes/transactions'));
 
-const PORT = process.env.PORT || 5000;
+const startServer = () => {
+  const PORT = 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
+};
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+module.exports = startServer;
