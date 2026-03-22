@@ -5,17 +5,23 @@ const path = require('path');
 let win;
 
 function createWindow() {
-  win = new BrowserWindow({ width: 1000, height: 800 });
-  win.loadURL('http://localhost:3000');
+  win = new BrowserWindow({
+    width: 1000,
+    height: 800,
+  });
+
+  // Load built React app
+  const startUrl = `file://${path.join(__dirname, 'frontend/build/index.html')}`;
+  win.loadURL(startUrl);
 }
 
 app.whenReady().then(() => {
-  spawn('node', ['backend/server.js'], { shell: true });
+  // Start backend (NO npm)
+  const backendPath = path.join(__dirname, 'backend/server.js');
 
-  spawn('npm', ['start'], {
-    cwd: path.join(__dirname, 'frontend'),
+  spawn('node', [backendPath], {
     shell: true,
   });
 
-  setTimeout(createWindow, 8000);
+  createWindow();
 });
